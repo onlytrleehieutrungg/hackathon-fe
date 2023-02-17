@@ -1,10 +1,13 @@
 import logo from "./mew.png";
 import "./App.css";
+import FooterComponent from "./components/HeaderFooter/Footer";
+import Header from "./components/HeaderFooter/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Header />
+      <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Tụi tớ đang phát triển ứng dụng ạ....</p>
         <a
@@ -15,7 +18,8 @@ function App() {
         >
           Xem tụi tớ!
         </a>
-      </header>
+      </div>
+      <FooterComponent />
     </div>
   );
 }
