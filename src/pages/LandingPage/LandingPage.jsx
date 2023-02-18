@@ -19,7 +19,7 @@ import Tiktok from "../../img/Decord/tiktok.svg";
 import Twitter from "../../img/Decord/twitter.svg";
 import WeProvideYourPet from "../../img/Decord/WeProvideYourPet.svg";
 
-const LandingPage = () => {
+export const LandingPage = () => {
   const { Search } = Input;
   return (
     <LayoutContainer>
@@ -245,12 +245,12 @@ const LandingPage = () => {
           position: "relative",
         }}
       >
-        <img src={Review} alt="Review"/>
+        <img src={Review} alt="Review" />
         <span
           style={{
             position: "absolute",
             bottom: "0",
-            width:"800px",
+            width: "800px",
           }}
         >
           <CustomerReviewComponent />
@@ -282,5 +282,3 @@ const LandingPage = () => {
     </LayoutContainer>
   );
 };
-
-export default LandingPage;

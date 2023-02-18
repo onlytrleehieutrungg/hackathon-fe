@@ -1,16 +1,14 @@
-import { Menu, Layout, Row, Affix, Col } from "antd";
-import React from "react";
+import { Affix, Col, Layout, Menu, Row } from "antd";
 import AppName from "../../img/BrandLogo/logo.svg";
 import "./Header.module.css";
 
-import { LoginButtonContainer } from "./components/LoginButton.container";
 import {
   LINK_ABOUT_US,
   LINK_HOME,
   LINK_SERVICE,
   LINK_SHOP,
 } from "../../constants/app.constants";
-
+import { LoginButtonContainer } from "./components/LoginButton.container";
 const HeaderComponent = (props) => {
   const { handleClickMenu, signInWithGoogle } = props;
   const { Header } = Layout;
@@ -35,6 +33,7 @@ const HeaderComponent = (props) => {
                 // mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
                 // breakpoint="768"
                 mode="horizontal"
+                onClick={handleClickMenu}
               >
                 <Menu.Item key={LINK_HOME}>Home</Menu.Item>
                 <Menu.Item key={LINK_SHOP}>Shop</Menu.Item>

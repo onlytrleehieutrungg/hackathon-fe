@@ -1,9 +1,7 @@
-import HeaderComponent from "./Header.component";
-import { auth } from "../../configuration/firebase/firebase.config";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/auth.slice";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../configuration/firebase/firebase.config";
 import {
   LINK_ABOUT_US,
   LINK_HOME,
@@ -11,6 +9,8 @@ import {
   LINK_SHOP,
 } from "../../constants/app.constants";
 import { NAVIGATE } from "../../constants/link";
+import { login } from "../../redux/auth/auth.slice";
+import HeaderComponent from "./Header.component";
 export const HeaderContainer = () => {
   const dispatch = useDispatch();
   const provider = new GoogleAuthProvider();
