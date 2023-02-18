@@ -2,8 +2,24 @@ import { Menu, Button, Layout, Row, Affix, Col } from "antd";
 import React from "react";
 import AppName from "../../img/BrandLogo/logo.svg";
 import "./Header.module.css";
-function HeaderComponent() {
+import { auth } from "../../configuration/firebase/firebase.config";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/auth.slice";
+import { useSelector } from "react-redux";
+import { LoginButtonContainer } from "./components/LoginButton.container";
+
+const HeaderComponent = () => {
+  const dispatch = useDispatch();
   const { Header } = Layout;
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((res) => {
+        dispatch(login(res));
+      })
+      .catch();
+  };
   return (
     <Affix offsetTop={0}>
       <Header
@@ -34,18 +50,12 @@ function HeaderComponent() {
             </div>
           </Col>
           <Col>
-            <Button
-              type="primary"
-              style={{ background: "#F1635F" }}
-              shape="round"
-            >
-              Contact
-            </Button>
+            <LoginButtonContainer signInWithGoogle={signInWithGoogle} />
           </Col>
         </Row>
       </Header>
     </Affix>
   );
-}
+};
 
 export default HeaderComponent;

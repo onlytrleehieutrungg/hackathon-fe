@@ -3,23 +3,28 @@ import "./App.css";
 import FooterComponent from "./components/Footer/Footer.component";
 import HeaderComponent from "./components/Header/Header.component";
 import { LayoutContainer } from "./components/Layout/Layout.component";
-import LandingPage from "./page/LandingPage/LandingPage";
 import "./style/global-ant.module.css";
 import { GLOBAL_THEME_ANT } from "./style/global-ant.theme";
+import { RouterProvider } from "react-router-dom";
+import { routerResult } from "./router/Routing";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
 function App() {
+  console.log(process.env.REACT_APP_API_KEY);
   return (
     <ConfigProvider
       theme={{
         token: GLOBAL_THEME_ANT,
       }}
     >
-      <LayoutContainer>
-        <div className="App">
+      <Provider store={store}>
+        <LayoutContainer>
           <HeaderComponent />
-          <LandingPage />
+          <RouterProvider router={routerResult} />
           <FooterComponent />
-        </div>
-      </LayoutContainer>
+        </LayoutContainer>
+      </Provider>
     </ConfigProvider>
   );
 }
