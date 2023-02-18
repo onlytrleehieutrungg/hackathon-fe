@@ -1,6 +1,6 @@
+import { ConfigProvider } from "antd";
 import "./App.css";
 import FooterComponent from "./components/Footer/Footer.component";
-import { ConfigProvider } from "antd";
 import { GLOBAL_THEME_ANT } from "./style/global-ant.theme";
 import "./style/global-ant.module.css";
 import { LayoutContainer } from "./components/Layout/Layout.component";

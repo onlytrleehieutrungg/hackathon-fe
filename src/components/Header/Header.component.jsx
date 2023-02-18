@@ -32,9 +32,9 @@ const HeaderComponent = (props) => {
           <Col>
             <div>
               <Menu
-                mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
-                breakpoint="768"
-                onClick={handleClickMenu}
+                // mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
+                // breakpoint="768"
+                mode="horizontal"
               >
                 <Menu.Item key={LINK_HOME}>Home</Menu.Item>
                 <Menu.Item key={LINK_SHOP}>Shop</Menu.Item>
