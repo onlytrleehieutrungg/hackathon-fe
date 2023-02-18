@@ -1,25 +1,19 @@
-import { Menu, Button, Layout, Row, Affix, Col } from "antd";
+import { Menu, Layout, Row, Affix, Col } from "antd";
 import React from "react";
 import AppName from "../../img/BrandLogo/logo.svg";
 import "./Header.module.css";
-import { auth } from "../../configuration/firebase/firebase.config";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/auth.slice";
-import { useSelector } from "react-redux";
-import { LoginButtonContainer } from "./components/LoginButton.container";
 
-const HeaderComponent = () => {
-  const dispatch = useDispatch();
+import { LoginButtonContainer } from "./components/LoginButton.container";
+import {
+  LINK_ABOUT_US,
+  LINK_HOME,
+  LINK_SERVICE,
+  LINK_SHOP,
+} from "../../constants/app.constants";
+
+const HeaderComponent = (props) => {
+  const { handleClickMenu, signInWithGoogle } = props;
   const { Header } = Layout;
-  const provider = new GoogleAuthProvider();
-  const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((res) => {
-        dispatch(login(res));
-      })
-      .catch();
-  };
   return (
     <Affix offsetTop={0}>
       <Header
@@ -40,11 +34,12 @@ const HeaderComponent = () => {
               <Menu
                 mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
                 breakpoint="768"
+                onClick={handleClickMenu}
               >
-                <Menu.Item key="home">Home</Menu.Item>
-                <Menu.Item key="about">Shop</Menu.Item>
-                <Menu.Item key="about us">About us</Menu.Item>
-                <Menu.Item key="service">Service</Menu.Item>
+                <Menu.Item key={LINK_HOME}>Home</Menu.Item>
+                <Menu.Item key={LINK_SHOP}>Shop</Menu.Item>
+                <Menu.Item key={LINK_ABOUT_US}>About us</Menu.Item>
+                <Menu.Item key={LINK_SERVICE}>Service</Menu.Item>
               </Menu>
             </div>
           </Col>
