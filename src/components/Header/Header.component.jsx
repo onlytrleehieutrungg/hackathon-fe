@@ -22,8 +22,9 @@ function HeaderComponent() {
           <Col>
             <div>
               <Menu
-                mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
-                breakpoint="768"
+                // mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
+                // breakpoint="768"
+                mode= "horizontal"
               >
                 <Menu.Item key="home">Home</Menu.Item>
                 <Menu.Item key="about">Shop</Menu.Item>
