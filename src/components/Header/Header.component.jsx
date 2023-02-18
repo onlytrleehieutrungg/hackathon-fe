@@ -14,16 +14,14 @@ function HeaderComponent() {
         }}
       >
         <Row justify="space-around" align={"middle"}>
-          <Col span={4}>
+          <Col>
             <div>
               <img src={AppName} alt="logo" />
             </div>
           </Col>
-          <Col span={10}>
-            <div></div>
+          <Col>
             <div>
               <Menu
-                style={{ width: "25rem" }}
                 mode={window.innerWidth < 768 ? "vertical" : "horizontal"}
                 breakpoint="768"
               >
@@ -34,7 +32,7 @@ function HeaderComponent() {
               </Menu>
             </div>
           </Col>
-          <Col span={2}>
+          <Col>
             <Button
               type="primary"
               style={{ background: "#F1635F" }}

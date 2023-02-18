@@ -38,3 +38,22 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-horizontal > .ant-menu-submenu::after {
+  border-bottom: 1px;
+  transition: none !important;
+}
+.ant-modal-header {
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+.ant-modal-header:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #e9e9e9;
+  width: 50%;
+  height: 0px;
+}
