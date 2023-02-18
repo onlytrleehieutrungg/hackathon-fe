@@ -1,6 +1,7 @@
+import { Col } from "antd";
+import { useEffect, useState } from "react";
 import { getAllDocumentByCollectionNameService } from "../../services/firestore.service";
 import { FilterShoppingComponent } from "./FillerShopping.component";
-import { useEffect, useState } from "react";
 
 export const FilterShoppingContainer = () => {
   const [listAgePet, setListAgePet] = useState([]);
@@ -13,8 +14,8 @@ export const FilterShoppingContainer = () => {
     console.log(listAgePet);
   }, []);
   return (
-    <>
+    <Col style={{width:"100%"}}>
       <FilterShoppingComponent listAgePet={listAgePet} />
-    </>
+    </Col>
   );
 };
