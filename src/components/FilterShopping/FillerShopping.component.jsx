@@ -1,6 +1,5 @@
-import { Segmented, Input, Col, Row, Button, Dropdown, Space } from "antd";
+import { Col, Input, Row, Segmented } from "antd";
 import { useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
 import catText from "../../img/Cat Supplements.svg";
 export const FilterShoppingComponent = (props) => {
   const { listAgePet } = props;
@@ -34,54 +33,25 @@ export const FilterShoppingComponent = (props) => {
     onClick: handleMenuClick,
   };
   return (
-    <>
-      <Row justify="center" align="middle">
-        <Col span={8}>
-          <Segmented options={options} style={{}} />
-        </Col>
-      </Row>
-      <Row justify="center" align="middle">
-        <Col span={8}>
+    <div>
+      <Col align={"center"}>
+        <Row justify="center" align="middle">
+          <Col span={8}>
+            <Segmented block options={options} style={{ width: "400px" }} />
+          </Col>
+        </Row>
+        <Row align="center" span={8} style={{ marginTop: "20px" }}>
           <img alt="" src={catText} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Input placeholder="Basic usage" />;
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Dropdown menu={menuProps}>
-            <Button>
-              <Space>
-                Age Pet
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-        </Col>
-        <Col>
-          <Dropdown menu={menuProps}>
-            <Button>
-              <Space>
-                Brand
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-        </Col>
-        <Col>
-          <Dropdown menu={menuProps}>
-            <Button>
-              <Space>
-                Price
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-        </Col>
-      </Row>
-    </>
+        </Row>
+        <Row style={{ margin: "20px 40px", padding: "0px 170px" }}>
+          <Col>
+            <Input
+              style={{ borderRadius: "25px", width: "300px" }}
+              placeholder="Find something you want!"
+            />
+          </Col>
+        </Row>
+      </Col>
+    </div>
   );
 };
