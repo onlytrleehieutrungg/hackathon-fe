@@ -37,7 +37,12 @@ export const FilterShoppingComponent = (props) => {
       <Col align={"center"}>
         <Row justify="center" align="middle">
           <Col span={8}>
-            <Segmented block options={options} style={{ width: "400px" }} />
+            <Segmented
+              block={true}
+              options={options}
+              style={{ width: "400px" }}
+              size="large"
+            />
           </Col>
         </Row>
         <Row align="center" span={8} style={{ marginTop: "20px" }}>

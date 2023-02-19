@@ -10,9 +10,14 @@ import { HeaderContainer } from "./components/Header/Header.container";
 
 import { Routing } from "./router/Routing";
 import ChatBox from "./components/Chatbox/Chatbox.component";
+import { useEffect } from "react";
+import { getAllProduct } from "./api/product.api";
 
 function App() {
   console.log(process.env.REACT_APP_API_KEY);
+  useEffect(() => {
+    getAllProduct();
+  }, []);
   return (
     <ConfigProvider
       theme={{

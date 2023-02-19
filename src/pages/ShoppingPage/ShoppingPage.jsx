@@ -3,6 +3,7 @@ import CardComponent from "../../components/CardComponent/CardComponent";
 import { FilterShoppingContainer } from "../../components/FilterShopping/FilterShopping.container";
 import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArticles.svg";
 import ShopPage from "../../img/Decord/ShopPage.svg";
+import { CardContainer } from "../../components/CardComponent/CardContainer";
 
 export const ShoppingPage = () => {
   const { Search } = Input;
@@ -16,24 +17,7 @@ export const ShoppingPage = () => {
       <Row style={{ display: "flex", justifyContent: "center" }}>
         <FilterShoppingContainer />
         <Row style={{ padding: "0px 200px" }}>
-          <Col align={"center"} span={8}>
-            <CardComponent />
-          </Col>
-          <Col align={"center"} span={8}>
-            <CardComponent />
-          </Col>
-          <Col align={"center"} span={8}>
-            <CardComponent />
-          </Col>
-          <Col align={"center"} span={8}>
-            <CardComponent />
-          </Col>
-          <Col align={"center"} span={8}>
-            <CardComponent />
-          </Col>
-          <Col align={"center"} span={8}>
-            <CardComponent />
-          </Col>
+          <CardContainer />
         </Row>
       </Row>
 

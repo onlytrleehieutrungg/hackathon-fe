@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { List, Input, Button, Avatar, Row, Col } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, CloseOutlined } from "@ant-design/icons";
 import meo from "../../img/mew.png";
-function ChatBox() {
+
+function ChatboxComponent(props) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -36,6 +37,7 @@ function ChatBox() {
             Rất vui được giúp đỡ quý khách
           </p>
         </Col>
+        <CloseOutlined style={{ width: "20px", cursor: "pointer" }} />
       </Row>
       <div style={{ overflow: "auto", position: "relative" }}>
         <List
@@ -82,4 +84,4 @@ function ChatBox() {
   );
 }
 
-export default ChatBox;
+export default ChatboxComponent;
