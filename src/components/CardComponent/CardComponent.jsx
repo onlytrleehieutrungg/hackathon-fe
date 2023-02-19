@@ -11,10 +11,10 @@ function CardComponent(props) {
       cover={<img alt="example" src={food1} />}
     >
       <Col align={"center"}>
-        <b>Title of Product</b>
-        <p>Description of product</p>
+        <b>{item.data.name}</b>
+        <p>Dành cho mèo từ {item.data.cat_age} tuổi</p>
         <p>
-          Price: <b style={{ color: "#F1635F" }}>$19.99</b>{" "}
+          Price: <b style={{ color: "#F1635F" }}>{item.data.price}</b>{" "}
         </p>
       </Col>
 
