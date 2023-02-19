@@ -9,9 +9,9 @@ import Star from "../../img/Decord/Star.svg";
 import mew from "../../img/mew.png";
 
 function ProductDetailPage() {
-
   const { Search } = Input;
   const { productId } = useParams();
+  console.log("id: ", productId);
   const [product, setProduct] = useState();
 
   const handleGetProductById = async (id) => {
@@ -24,7 +24,7 @@ function ProductDetailPage() {
   }, []);
 
   return (
-    <Row style={{padding:"0px 100px"}}>
+    <Row style={{ padding: "0px 100px" }}>
       <Col span={12}>
         <div
           style={{
@@ -47,7 +47,7 @@ function ProductDetailPage() {
             flexDirection: "column",
           }}
         >
-          <b style={{ fontSize: "40px" }}>{product.name}</b>
+          <b style={{ fontSize: "40px" }}>{product?.name}</b>
           <img
             style={{
               width: "200px",
@@ -58,7 +58,7 @@ function ProductDetailPage() {
         </div>
 
         <p style={{ fontSize: "18px" }}>
-          {product.describe}
+          {product?.describe}
           {/* Với thành phần gồm nhiều chất dinh dưỡng tốt cho sức khỏe của mèo như
           Omega 3 và 6, xuất phát từ các nguyên liệu tự nhiên như trái cây và
           rau củ quả, gạo lứt, yến mạch, dầu cá hồi và các loại Vitamin khác. */}
@@ -80,7 +80,7 @@ function ProductDetailPage() {
               fontSize: "40px",
             }}
           >
-            {product.price} đ
+            {product?.price} đ
           </b>
         </p>
 
@@ -113,13 +113,11 @@ function ProductDetailPage() {
         <div style={{ color: "white" }}>
           <b style={{ fontSize: "30px" }}>Hoạt chất</b>
           <br />
-          <b>Nguyên liệu chính của {product.name} cho mèo bao gồm: </b>
-          <p>
-            {product.base_material}
-          </p>
+          <b>Nguyên liệu chính của {product?.name} cho mèo bao gồm: </b>
+          <p>{product?.base_material}</p>
 
           <b>
-            Sử dụng {product.name}, mèo nhà bạn nhận được hàm lượng dinh dưỡng
+            Sử dụng {product?.name}, mèo nhà bạn nhận được hàm lượng dinh dưỡng
             như sau:{" "}
           </b>
           <p>
