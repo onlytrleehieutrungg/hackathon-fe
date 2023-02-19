@@ -7,13 +7,15 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../configuration/firebase/firebase.config";
+
 export const getAllProduct = async () => {
   const q = query(collection(db, "product"));
   const querySnapshot = await getDocs(q);
+  const data = [];
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
+    data.push({ id: doc.id, data: doc.data() });
   });
+  return data;
 };
 
 export const getProductDetailById = async (id) => {
