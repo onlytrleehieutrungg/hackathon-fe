@@ -16,7 +16,7 @@ import { getAllProduct, getProductDetailById } from "./api/product.api";
 function App() {
   console.log(process.env.REACT_APP_API_KEY);
   useEffect(() => {
-    getProductDetailById("nNcqxA9flT8idnuzInl1");
+    getAllProduct();
   }, []);
   return (
     <ConfigProvider
