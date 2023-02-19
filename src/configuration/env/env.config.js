@@ -6,3 +6,4 @@ export const MESSAGING_SENDER_ID =
   process.env.REACT_APP_MESSAGING_SENDER_ID | "null";
 export const APP_ID = process.env.REACT_APP_APP_ID || "null";
 export const MEASUREMETN_ID = process.env.REACT_APP_MEASUREMETN_ID || "null";
+export const BASE_URL = process.env.REACT_APP_BASE_URL || "api.petview.online";
