@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { List, Input, Button, Avatar, Row, Col } from "antd";
 import { UserOutlined, CloseOutlined } from "@ant-design/icons";
 import meo from "../../img/mew.png";
+import { useSelector } from "react-redux";
 
-function ChatboxComponent(props) {
-  const [messages, setMessages] = useState([]);
+export const ChatboxComponent = (props) => {
+  const { handleCallChatBox } = props;
+  const messageLog = useSelector((state) => state.message);
+  const [messages, setMessages] = useState([
+    "Feel free to ask!",
+    "ChatGPT behind",
+  ]);
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = () => {
+    handleCallChatBox(newMessage);
     setMessages((messages) => [...messages, { text: newMessage }]);
     setNewMessage("");
   };
-
   return (
     <div
       style={{
@@ -70,7 +76,7 @@ function ChatboxComponent(props) {
             <Input
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              placeholder="Type your message here"
+              placeholder="ChatGPT behind"
             />
           </Col>
           <Col span={8}>
@@ -82,6 +88,4 @@ function ChatboxComponent(props) {
       </div>
     </div>
   );
-}
-
-export default ChatboxComponent;
+};
