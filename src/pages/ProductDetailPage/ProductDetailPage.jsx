@@ -1,5 +1,6 @@
 import { Button, Col, Input, Row } from "antd";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { getProductDetailById } from "../../api/product.api";
 import CardComponent from "../../components/CardComponent/CardComponent";
@@ -7,13 +8,21 @@ import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArti
 import car from "../../img/Decord/car.svg";
 import Star from "../../img/Decord/Star.svg";
 import mew from "../../img/mew.png";
+import { addToCard } from "../../redux/card/card.slice";
 
 function ProductDetailPage() {
   const { Search } = Input;
   const { productId } = useParams();
-  console.log("id: ", productId);
   const [product, setProduct] = useState();
-
+  const dispatch = useDispatch();
+  const handleAddProductToCard = (item) => {
+    const newProduct = {
+      productId: item?.data.id,
+      quantity: 1,
+      totalPrice: item?.data.price,
+    };
+    dispatch(addToCard(newProduct));
+  };
   const handleGetProductById = async (id) => {
     const product = await getProductDetailById(id);
     setProduct(product);

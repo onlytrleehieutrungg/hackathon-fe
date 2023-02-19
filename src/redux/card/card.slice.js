@@ -9,6 +9,9 @@ const cardSlice = createSlice({
     productList: []
   },
   reducers: {
+    addToCard: (state, action) => {
+      state.productList = action.payload
+    },
     createCard: (state, action) => {
       state.userId = action.payload.userId;
       state.isPaid = false;
@@ -22,5 +25,5 @@ const cardSlice = createSlice({
   },
 });
 
-export const { createCard, cardPayment } = cardSlice.actions;
+export const { addToCard, createCard, cardPayment } = cardSlice.actions;
 export default cardSlice.reducer;
