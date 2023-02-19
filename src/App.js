@@ -9,9 +9,9 @@ import { store } from "./redux/store";
 import { HeaderContainer } from "./components/Header/Header.container";
 
 import { Routing } from "./router/Routing";
-import ChatBox from "./components/Chatbox/Chatbox.component";
 import { useEffect } from "react";
 import { getAllProduct, getProductDetailById } from "./api/product.api";
+import { ChatboxContainer } from "./components/Chatbox/Chatbox.container";
 
 function App() {
   console.log(process.env.REACT_APP_API_KEY);
@@ -27,7 +27,7 @@ function App() {
       <Provider store={store}>
         <LayoutContainer>
           <HeaderContainer />
-          <ChatBox />
+          <ChatboxContainer />
           <Routing />
           <FooterComponent />
         </LayoutContainer>
