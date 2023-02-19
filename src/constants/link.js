@@ -3,6 +3,6 @@ export const NAVIGATE = {
   SHOP: "/shopping",
   ABOUT_US: "/about-us",
   SERVICES: "/services",
-  PRODUCTDETAIL:"/productdetail",
+  PRODUCTDETAIL:"/productdetail/:productId",
   VIEWCART:"/viewcart",
 };
