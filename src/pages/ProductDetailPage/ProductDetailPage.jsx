@@ -1,16 +1,39 @@
 import { Button, Col, Input, Row } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { getProductDetailById } from "../../api/product.api";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArticles.svg";
 import car from "../../img/Decord/car.svg";
 import Star from "../../img/Decord/Star.svg";
 import mew from "../../img/mew.png";
+import { addToCard } from "../../redux/card/card.slice";
 
 function ProductDetailPage() {
   const { Search } = Input;
+  const { productId } = useParams();
+  const [product, setProduct] = useState();
+  const dispatch = useDispatch();
+  const handleAddProductToCard = (item) => {
+    const newProduct = {
+      productId: item?.data.id,
+      quantity: 1,
+      totalPrice: item?.data.price,
+    };
+    dispatch(addToCard(newProduct));
+  };
+  const handleGetProductById = async (id) => {
+    const product = await getProductDetailById(id);
+    setProduct(product);
+  };
+
+  useEffect(() => {
+    handleGetProductById(productId);
+  }, []);
 
   return (
-    <Row>
+    <Row style={{ padding: "0px 100px" }}>
       <Col span={12}>
         <div
           style={{
@@ -33,7 +56,7 @@ function ProductDetailPage() {
             flexDirection: "column",
           }}
         >
-          <b style={{ fontSize: "40px" }}>Hạt nutrience cho mèo</b>
+          <b style={{ fontSize: "40px" }}>{product?.name}</b>
           <img
             style={{
               width: "200px",
@@ -44,9 +67,10 @@ function ProductDetailPage() {
         </div>
 
         <p style={{ fontSize: "18px" }}>
-          Với thành phần gồm nhiều chất dinh dưỡng tốt cho sức khỏe của mèo như
+          {product?.describe}
+          {/* Với thành phần gồm nhiều chất dinh dưỡng tốt cho sức khỏe của mèo như
           Omega 3 và 6, xuất phát từ các nguyên liệu tự nhiên như trái cây và
-          rau củ quả, gạo lứt, yến mạch, dầu cá hồi và các loại Vitamin khác.
+          rau củ quả, gạo lứt, yến mạch, dầu cá hồi và các loại Vitamin khác. */}
         </p>
 
         <ul>
@@ -65,7 +89,7 @@ function ProductDetailPage() {
               fontSize: "40px",
             }}
           >
-            300.000đ
+            {product?.price} đ
           </b>
         </p>
 
@@ -98,15 +122,11 @@ function ProductDetailPage() {
         <div style={{ color: "white" }}>
           <b style={{ fontSize: "30px" }}>Hoạt chất</b>
           <br />
-          <b>Nguyên liệu chính của hạt Nutrience cho mèo bao gồm: </b>
-          <p>
-            Bột thịt gà Canada, gạo lứt, bột yến mạch, đậu hà lan, mỡ gà, bột củ
-            cải khô, hương vị gà tự nhiên, sản phẩm trứng, hạt lanh, Canxi
-            cacbonat, men bia, dầu cá hồi (nguồn DHA), việt quất…
-          </p>
+          <b>Nguyên liệu chính của {product?.name} cho mèo bao gồm: </b>
+          <p>{product?.base_material}</p>
 
           <b>
-            Sử dụng hạt Nutrience, mèo nhà bạn nhận được hàm lượng dinh dưỡng
+            Sử dụng {product?.name}, mèo nhà bạn nhận được hàm lượng dinh dưỡng
             như sau:{" "}
           </b>
           <p>
@@ -129,7 +149,7 @@ function ProductDetailPage() {
 
       <div
         style={{
-          marginTop:"20px",
+          marginTop: "20px",
           width: "100%",
           display: "flex",
           flexDirection: "column",
@@ -137,7 +157,7 @@ function ProductDetailPage() {
           alignItems: "center",
         }}
       >
-        <b style={{fontSize:"30px"}}>You may also like</b>
+        <b style={{ fontSize: "30px" }}>You may also like</b>
         <Row gutter={30}>
           <Col>
             <CardComponent />

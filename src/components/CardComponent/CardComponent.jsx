@@ -1,5 +1,4 @@
 import { Button, Card, Col } from "antd";
-import React from "react";
 import food1 from "../../img/Product-svg/food1.svg";
 
 function CardComponent(props) {
@@ -11,10 +10,10 @@ function CardComponent(props) {
       cover={<img alt="example" src={food1} />}
     >
       <Col align={"center"}>
-        <b>{item.data.name}</b>
-        <p>Dành cho mèo từ {item.data.cat_age} tuổi</p>
+        <b>{item?.data.name}</b>
+        <p>Dành cho mèo từ {item?.data.cat_age} tuổi</p>
         <p>
-          Price: <b style={{ color: "#F1635F" }}>{item.data.price}</b>{" "}
+          Price: <b style={{ color: "#F1635F" }}>{item?.data.price}</b>{" "}
         </p>
       </Col>
 
@@ -22,7 +21,7 @@ function CardComponent(props) {
         type="primary"
         style={{ background: "#101C2D", color: "white", width: "100%" }}
         shape="round"
-        onClick={() => {}}
+        onClick={()=>{}}
       >
         Buy now
       </Button>

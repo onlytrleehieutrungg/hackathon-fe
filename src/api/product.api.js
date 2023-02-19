@@ -1,10 +1,5 @@
 import {
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  query,
-  where,
+  addDoc, collection, doc, getDoc, getDocs, query
 } from "firebase/firestore";
 import { db } from "../configuration/firebase/firebase.config";
 
@@ -27,3 +22,19 @@ export const getProductDetailById = async (id) => {
     console.log("No such document!");
   }
 };
+
+export const createNewCard = async (data) => {
+  const docRef = await addDoc(collection(db, "card", data));
+  return docRef.id;
+}
+
+export const getCardDetailById = async (cardId) => {
+  const docRef = doc(db, "card", cardId);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+  else {
+    console.log("No such document!");
+  }
+}
