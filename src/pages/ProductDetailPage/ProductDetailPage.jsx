@@ -15,11 +15,11 @@ function ProductDetailPage() {
   const { productId } = useParams();
   const [product, setProduct] = useState();
   const dispatch = useDispatch();
-  const handleAddProductToCard = (item) => {
+  const handleAddProductToCard = () => {
     const newProduct = {
-      productId: item?.data.id,
+      productId: product.id,
       quantity: 1,
-      totalPrice: item?.data.price,
+      totalPrice: product?.price,
     };
     dispatch(addToCard(newProduct));
   };
@@ -105,7 +105,7 @@ function ProductDetailPage() {
             type="primary"
             style={{ background: "#F1635F" }}
             shape="round"
-            onClick={() => {}}
+            onClick={() => handleAddProductToCard()}
           >
             Add to card
           </Button>

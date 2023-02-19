@@ -9,9 +9,11 @@ import {
   LINK_SHOP,
 } from "../../constants/app.constants";
 import { LoginButtonContainer } from "./components/LoginButton.container";
+import { useNavigate } from "react-router";
 const HeaderComponent = (props) => {
   const { handleClickMenu, signInWithGoogle } = props;
   const { Header } = Layout;
+  const navigate = useNavigate();
   return (
     <Affix offsetTop={0}>
       <Header
@@ -24,7 +26,14 @@ const HeaderComponent = (props) => {
         <Row justify="space-around" align={"middle"}>
           <Col>
             <div>
-              <img src={AppName} alt="logo" />
+              <img
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate("/", { replace: true });
+                }}
+                src={AppName}
+                alt="logo"
+              />
             </div>
           </Col>
           <Col>
