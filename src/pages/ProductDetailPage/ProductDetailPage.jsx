@@ -1,29 +1,37 @@
-import { Button, Col, Input, Row } from "antd";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
-import { getProductDetailById } from "../../api/product.api";
+import {Button, Col, Input, Row} from "antd";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router";
+import {getProductDetailById} from "../../api/product.api";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArticles.svg";
 import car from "../../img/Decord/car.svg";
 import Star from "../../img/Decord/Star.svg";
 import mew from "../../img/mew.png";
-import { addToCard } from "../../redux/card/card.slice";
+import {addToCart} from "../../redux/card/card.slice";
 
 function ProductDetailPage() {
-  const { Search } = Input;
-  const { productId } = useParams();
+  const {Search} = Input;
+  const {productId} = useParams();
   const [product, setProduct] = useState();
   const dispatch = useDispatch();
   const handleAddProductToCard = () => {
     const newProduct = {
-      productId: product.id,
+      id: productId,
+      productName: product.name,
       quantity: 1,
       totalPrice: product?.price,
+      describe: product?.describe,
+      price: product?.price,
     };
-    dispatch(addToCard(newProduct));
+    dispatch(addToCart(newProduct));
   };
-  const handleGetProductById = async (id) => {
+  // const {cart} = useSelector(state => state.card);
+  // useEffect(() => {
+  //   console.log("gio hang", cart);
+  // }, [cart]);
+
+  const handleGetProductById = async id => {
     const product = await getProductDetailById(id);
     setProduct(product);
   };
@@ -33,7 +41,7 @@ function ProductDetailPage() {
   }, []);
 
   return (
-    <Row style={{ padding: "0px 100px" }}>
+    <Row style={{padding: "0px 100px"}}>
       <Col span={12}>
         <div
           style={{
@@ -46,7 +54,7 @@ function ProductDetailPage() {
             alignItems: "center",
           }}
         >
-          <img style={{ width: "300px" }} src={mew} alt="example" />
+          <img style={{width: "300px"}} src={mew} alt="example" />
         </div>
       </Col>
       <Col span={12}>
@@ -56,7 +64,7 @@ function ProductDetailPage() {
             flexDirection: "column",
           }}
         >
-          <b style={{ fontSize: "40px" }}>{product?.name}</b>
+          <b style={{fontSize: "40px"}}>{product?.name}</b>
           <img
             style={{
               width: "200px",
@@ -66,7 +74,7 @@ function ProductDetailPage() {
           />
         </div>
 
-        <p style={{ fontSize: "18px" }}>
+        <p style={{fontSize: "18px"}}>
           {product?.describe}
           {/* Với thành phần gồm nhiều chất dinh dưỡng tốt cho sức khỏe của mèo như
           Omega 3 và 6, xuất phát từ các nguyên liệu tự nhiên như trái cây và
@@ -95,7 +103,7 @@ function ProductDetailPage() {
 
         <Row>
           <img src={car} alt="delivery" />
-          <p style={{ fontSize: "16px" }}>
+          <p style={{fontSize: "16px"}}>
             Giao hàng miễn phí - giao hàng ước tính từ 3-5 ngày
           </p>
         </Row>
@@ -103,7 +111,7 @@ function ProductDetailPage() {
         <Col>
           <Button
             type="primary"
-            style={{ background: "#F1635F" }}
+            style={{background: "#F1635F"}}
             shape="round"
             onClick={() => handleAddProductToCard()}
           >
@@ -119,8 +127,8 @@ function ProductDetailPage() {
           width: "100%",
         }}
       >
-        <div style={{ color: "white" }}>
-          <b style={{ fontSize: "30px" }}>Hoạt chất</b>
+        <div style={{color: "white"}}>
+          <b style={{fontSize: "30px"}}>Hoạt chất</b>
           <br />
           <b>Nguyên liệu chính của {product?.name} cho mèo bao gồm: </b>
           <p>{product?.base_material}</p>
@@ -157,7 +165,7 @@ function ProductDetailPage() {
           alignItems: "center",
         }}
       >
-        <b style={{ fontSize: "30px" }}>You may also like</b>
+        <b style={{fontSize: "30px"}}>You may also like</b>
         <Row gutter={30}>
           <Col>
             <CardComponent />
@@ -180,7 +188,7 @@ function ProductDetailPage() {
         }}
       >
         <img src={SubscribeOurPetsArticles} alt="SubscribeOurPetsArticles" />
-        <p style={{ fontSize: "20px", width: "1000px" }}>
+        <p style={{fontSize: "20px", width: "1000px"}}>
           Chúng tôi tin rằng khả năng tư vấn, giao tiếp và cung cấp dịch vụ tốt
           nhất cho khách hàng của chúng tôi sẽ dẫn đến kết quả tài chính mạnh mẽ
           và tăng trưởng dài hạn.

@@ -5,4 +5,5 @@ export const NAVIGATE = {
   SERVICES: "/services",
   PRODUCTDETAIL:"/productdetail/:productId",
   VIEWCART:"/viewcart",
+  PAYMENT:"/payment",
 };

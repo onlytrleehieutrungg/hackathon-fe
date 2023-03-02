@@ -16,7 +16,6 @@ function CardComponent(props) {
           Price: <b style={{ color: "#F1635F" }}>{item?.data.price}</b>{" "}
         </p>
       </Col>
-
       <Button
         type="primary"
         style={{ background: "#101C2D", color: "white", width: "100%" }}

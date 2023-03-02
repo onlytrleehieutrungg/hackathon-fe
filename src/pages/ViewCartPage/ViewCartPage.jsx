@@ -1,5 +1,5 @@
-import { Col, Row, Table, Input } from "antd";
-import React, { useState } from "react";
+import {Col, Row, Table, Input} from "antd";
+import React, {useEffect, useState} from "react";
 import CardComponent from "../../components/CardComponent/CardComponent";
 import BillForm from "../../components/OrderInformation/OrderInformationForm";
 import food1 from "../../img/Product-svg/food1.svg";
@@ -8,12 +8,13 @@ import food3 from "../../img/Product-svg/food3.svg";
 import food4 from "../../img/Product-svg/food4.svg";
 import MostPopular from "../../img/ComplexText/MostPopular.svg";
 import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArticles.svg";
-
+import {useSelector} from "react-redux";
+import mew from "../../img/mew.png";
 const columns = [
   {
     title: "Product",
     dataIndex: "product",
-    render: (img) => <img style={{ width: "100px" }} src={img} alt="product" />,
+    render: img => <img style={{width: "100px"}} src={mew} alt="product" />,
   },
   {
     title: "Price",
@@ -25,7 +26,7 @@ const columns = [
   },
   {
     title: "Provisional",
-    dataIndex: "provisional",
+    dataIndex: "totalPrice",
   },
 ];
 const data = [
@@ -67,7 +68,7 @@ const rowSelection = {
       selectedRows
     );
   },
-  getCheckboxProps: (record) => ({
+  getCheckboxProps: record => ({
     disabled: record.name === "Disabled User",
     // Column configuration not to be checked
     name: record.name,
@@ -76,19 +77,20 @@ const rowSelection = {
 
 function ViewCartPage() {
   const [selectionType, setSelectionType] = useState("checkbox");
-  const { Search } = Input;
-
+  const {Search} = Input;
+  const {cart, total} = useSelector(state => state.card);
+  console.log(cart);
   return (
     <div>
       <Row align={"center"}>
         <Table
-          style={{ width: "1000px" }}
+          style={{width: "1000px"}}
           size="small"
           rowSelection={{
             type: selectionType,
           }}
           columns={columns}
-          dataSource={data}
+          dataSource={cart}
         />
       </Row>
       <Row
@@ -101,17 +103,19 @@ function ViewCartPage() {
           color: "white",
         }}
       >
-        Plus Cart{" "}
-        <p
+        <h3 style={{alignSelf: "center"}}>Tổng cộng: </h3>
+
+        <h1
           style={{
             color: "#F1635F",
             fontWeight: "bold",
-            margin: 0,
+            alignSelf: "center",
             wordSpacing: "10px",
           }}
         >
-          $59.88
-        </p>
+          {"    "}
+          {total}
+        </h1>
       </Row>
 
       <Col
@@ -157,7 +161,7 @@ function ViewCartPage() {
         }}
       >
         <img src={SubscribeOurPetsArticles} alt="SubscribeOurPetsArticles" />
-        <p style={{ fontSize: "20px", width: "1000px" }}>
+        <p style={{fontSize: "20px", width: "1000px"}}>
           Chúng tôi tin rằng khả năng tư vấn, giao tiếp và cung cấp dịch vụ tốt
           nhất cho khách hàng của chúng tôi sẽ dẫn đến kết quả tài chính mạnh mẽ
           và tăng trưởng dài hạn.
