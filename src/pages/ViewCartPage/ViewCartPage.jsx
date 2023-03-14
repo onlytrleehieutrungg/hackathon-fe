@@ -10,6 +10,10 @@ import MostPopular from "../../img/ComplexText/MostPopular.svg";
 import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArticles.svg";
 import {useSelector} from "react-redux";
 import mew from "../../img/mew.png";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
+
+
 const columns = [
   {
     title: "Product",
@@ -74,6 +78,21 @@ const rowSelection = {
     name: record.name,
   }),
 };
+function createOrder(data, actions) {
+  return actions.order.create({
+    purchase_units: [
+      {
+        amount: {
+          value: "1.00",
+          currency_code: "USD",
+        },
+      },
+    ],
+  });
+}
+function onApprove(data, actions) {
+  // handle the confirmation
+}
 
 function ViewCartPage() {
   const [selectionType, setSelectionType] = useState("checkbox");
@@ -126,7 +145,8 @@ function ViewCartPage() {
           color: "white",
         }}
       >
-        <BillForm />
+      <PayPalButtons createOrder={createOrder} onApprove={onApprove}/>Ï
+        {/* <BillForm /> */}
       </Col>
 
       <div

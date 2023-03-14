@@ -7,7 +7,7 @@ import { LayoutContainer } from "./components/Layout/Layout.component";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { HeaderContainer } from "./components/Header/Header.container";
-
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Routing } from "./router/Routing";
 import { useEffect } from "react";
 import { getAllProduct, getProductDetailById } from "./api/product.api";
@@ -25,12 +25,16 @@ function App() {
       }}
     >
       <Provider store={store}>
+      <PayPalScriptProvider
+      options={{ "client-id": "ASu-wt2OhrVpaB0btUN6Jz2DCMIcvVbTHQtjdFFUEG4W6pP4TZHYiIcS7N2A1qAfanzD-dsxBCgtwaiF", currency: "USD" }}
+    >
         <LayoutContainer>
           <HeaderContainer />
           <ChatboxContainer />
           <Routing />
           <FooterComponent />
         </LayoutContainer>
+        </PayPalScriptProvider>Ï
       </Provider>
     </ConfigProvider>
   );
