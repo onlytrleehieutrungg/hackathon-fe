@@ -10,9 +10,7 @@ import MostPopular from "../../img/ComplexText/MostPopular.svg";
 import SubscribeOurPetsArticles from "../../img/ComplexText/SubscribeOurPetsArticles.svg";
 import {useSelector} from "react-redux";
 import mew from "../../img/mew.png";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-
-
+import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 
 const columns = [
   {
@@ -145,7 +143,11 @@ function ViewCartPage() {
           color: "white",
         }}
       >
-      <PayPalButtons createOrder={createOrder} onApprove={onApprove}/>Ï
+        <PayPalButtons
+          createOrder={createOrder}
+          onError={e => console.log(e)}
+          onApprove={onApprove}
+        />
         {/* <BillForm /> */}
       </Col>
 
